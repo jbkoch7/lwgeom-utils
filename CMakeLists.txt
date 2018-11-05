@@ -65,8 +65,8 @@ set( JSON_C_DIR CACHE PATH "Location of JSON-C installation" )
 find_package( JSONC 0.13 )
 
 # Configure files
-configure_file( ${PROJECT_SOURCE_DIR}/src/lwgeomutils_config.h.in
-  ${PROJECT_SOURCE_DIR}/src/lwgeomutils_config.h @ONLY )
+#configure_file( ${PROJECT_SOURCE_DIR}/src/lwgeomutils_config.h.in
+  #${PROJECT_SOURCE_DIR}/src/lwgeomutils_config.h @ONLY )
 
 #add_subdirectory( src )
 add_subdirectory( apps )
