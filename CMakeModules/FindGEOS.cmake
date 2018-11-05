@@ -59,16 +59,6 @@ if( NOT GEOS_USE_STATIC_LIBS STREQUAL GEOS_USE_STATIC_LIBS_LAST )
   unset( GEOS_LIBRARY CACHE )
 endif()
 
-# Find GEOS library
-find_library( GEOS_LIB
-  NAMES geos
-  HINTS
-    ${GEOS_DIR}/lib
-  PATHS
-    /usr/lib64
-    /usr/lib
-    /usr/local/lib )
-
 # Find GEOS C library
 find_library( GEOS_C_LIB
   NAMES geos_c
@@ -79,9 +69,19 @@ find_library( GEOS_C_LIB
     /usr/lib
     /usr/local/lib )
 
+# Find GEOS library
+find_library( GEOS_LIB
+  NAMES geos
+  HINTS
+    ${GEOS_DIR}/lib
+  PATHS
+    /usr/lib64
+    /usr/lib
+    /usr/local/lib )
+
 # Set the GEOS_LIBRARY
-if( GEOS_LIB AND GEOS_C_LIB )
-  set( GEOS_LIBRARY ${GEOS_LIB} ${GEOS_C_LIB} CACHE STRING INTERNAL )
+if( GEOS_C_LIB AND GEOS_LIB )
+  set( GEOS_LIBRARY ${GEOS_C_LIB} ${GEOS_LIB} CACHE LIST INTERNAL )
 endif()
 
 # Restore the original find library ordering
