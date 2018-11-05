@@ -65,7 +65,7 @@ endif()
 
 # Find LWGEOM library
 find_library( LWGEOM_LIBRARY
-  NAMES liblwgeom
+  NAMES lwgeom
   HINTS
   ${LWGEOM_DIR}/lib
   PATHS
