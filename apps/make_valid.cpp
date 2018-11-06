@@ -20,10 +20,12 @@ int main(
     char* srs = nullptr;
     LWGEOM* gin = nullptr;
     LWGEOM* gout = nullptr;
-    std::string geojson = argv[ 1 ];
 
     try
     {
+        if( argc != 2 ) throw std::invalid_argument(
+            "Wrong number of arguments provided" );
+        std::string geojson = argv[ 1 ];
         gin = lwgeom_from_geojson( geojson.c_str(), &srs );
         gout = lwgeom_make_valid( gin );
         geojson = lwgeom_to_geojson( gout, srs, precision, has_bbox );
