@@ -62,6 +62,7 @@ endif()
 find_library( PROJ_LIBRARY
   NAMES
     proj
+    proj_${PROJ_VERSION_MAJOR}_${PROJ_VERSION_MINOR}
   HINTS
     ${PROJ_DIR}/lib
   PATHS
