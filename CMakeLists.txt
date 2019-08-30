@@ -1,6 +1,6 @@
 
 cmake_minimum_required( VERSION 3.0.0 )
-project( lwgeom-utils )
+project( LWGEOMUTILS )
 
 set( LWGEOMUTILS_MAJOR_VERSION 0 )
 set( LWGEOMUTILS_MINOR_VERSION 1 )
@@ -60,13 +60,17 @@ set( POSTGIS_GEOS_VERSION "${GEOS_VERSION_MAJOR}${GEOS_VERSION_MINOR}" )
 set( PROJ_DIR CACHE PATH "Location of PROJ installation" )
 find_package( PROJ 4.9 REQUIRED )
 
+# SQLite3
+set( PROJ_DIR CACHE PATH "Location of SQLite3 installation" )
+find_package( SQLite3 3.0 REQUIRED )
+
 # JSON-C
 set( JSON_C_DIR CACHE PATH "Location of JSON-C installation" )
 find_package( JSONC 0.13 )
 
 # Configure files
-#configure_file( ${PROJECT_SOURCE_DIR}/src/lwgeomutils_config.h.in
-  #${PROJECT_SOURCE_DIR}/src/lwgeomutils_config.h @ONLY )
+configure_file( ${PROJECT_SOURCE_DIR}/src/lwgeomutils_config.h.in
+  ${PROJECT_SOURCE_DIR}/src/lwgeomutils_config.h @ONLY )
 
-#add_subdirectory( src )
+add_subdirectory( src )
 add_subdirectory( apps )
