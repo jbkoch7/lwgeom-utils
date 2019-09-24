@@ -47,10 +47,6 @@ if( PROJ_USE_STATIC_LIBS )
   if( NOT WIN32 )
     set( CMAKE_FIND_LIBRARY_SUFFIXES .a )
   endif()
-else()
-  if( WIN32 )
-    set( CMAKE_FIND_LIBRARY_SUFFIXES _i.lib )
-  endif()
 endif()
 
 # If the user changed static libs preference, flush previous results
