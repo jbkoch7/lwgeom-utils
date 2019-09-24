@@ -1,5 +1,5 @@
 // --- Lwgeomutils Includes --- //
-#include <postgis/postgis.h>
+#include <postgis/geography.sql.h>
 
 // --- Proj Includes --- //
 #include <proj_api.h>
@@ -10,11 +10,10 @@ namespace postgis
 ////////////////////////////////////////////////////////////////////////////////
 LWGEOM* geography_from_geometry( LWGEOM* lwgeom )
 {
-    if( geography_valid_type( gserialized_get_type( geom ) ) )
-    {
-        throw std::runtime_error( "postgis::geography_from_geometry: "
-            "" );
-    }
+    lwgeom = lwgeom_clone_deep( lwgeom );
+
+    //Check that this is a type we can handle
+    geography_valid_type( lwgeom );
 
     //Force default SRID
     if( lwgeom->srid <= 0 )
@@ -23,7 +22,6 @@ LWGEOM* geography_from_geometry( LWGEOM* lwgeom )
     }
 
     //Error on any SRID != default
-    //srid_is_latlong( fcinfo, lwgeom->srid );
     if( lwgeom->srid != SRID_DEFAULT )
     {
         throw std::runtime_error( "postgis::geography_from_geometry: "
@@ -46,8 +44,21 @@ LWGEOM* geography_from_geometry( LWGEOM* lwgeom )
         lwgeom_refresh_bbox( lwgeom );
     }
 
-    return lwgeom
+    return lwgeom;
+}
+////////////////////////////////////////////////////////////////////////////////
+void geography_valid_type( LWGEOM* lwgeom )
+{
+    auto type = lwgeom->type;
+    if( !( type == POINTTYPE || type == MULTIPOINTTYPE ||
+           type == LINETYPE || type == MULTILINETYPE ||
+           type == POLYGONTYPE || type == MULTIPOLYGONTYPE ||
+           type == COLLECTIONTYPE ) )
+    {
+        throw std::runtime_error( std::string( "postgis::geography_valid_type"
+            "Geography type does not support " ) + lwtype_name( type ) );
+    }
 }
 ////////////////////////////////////////////////////////////////////////////////
 
-}
+} //postgis

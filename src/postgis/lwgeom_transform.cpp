@@ -1,5 +1,5 @@
 // --- Lwgeomutils Includes --- //
-#include <postgis/postgis.h>
+#include <postgis/postgis.sql.h>
 
 // --- Proj Includes --- //
 #include <proj_api.h>
@@ -10,7 +10,7 @@ namespace postgis
 ////////////////////////////////////////////////////////////////////////////////
 LWGEOM* transform( LWGEOM* lwgeom, int srid, bool clone )
 {
-    if( clone ) lwgeom = lwgeom_clone_deep( lwgeom );
+    lwgeom = lwgeom_clone_deep( lwgeom );
     if( !lwgeom->srid )
     {
         throw std::runtime_error( "postgis::transform: input srid undefined" );

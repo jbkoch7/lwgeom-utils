@@ -1,6 +1,6 @@
 
 // --- Lwgeomutils Includes --- //
-#include <postgis/postgis.h>
+#include <postgis/postgis.sql.h>
 
 // --- Standard Includes --- //
 #include <cfloat>
@@ -29,7 +29,10 @@ int main(
         //double dist = std::stod( argv[ 2 ] );
         gin = lwgeom_from_geojson( geojson.c_str(), &srs );
         gin->srid = 4326;
-        gout = postgis::transform( gin, 5070 );
+        for( auto srid : srids )
+        {
+            gout = postgis::transform( gin, srid );
+        }
         //gout = lwgeom_segmentize2d( gin, dist );
         geojson = lwgeom_to_geojson( gout, srs, precision, has_bbox );
         std::cout << geojson;
