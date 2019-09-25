@@ -8,7 +8,7 @@ namespace postgis
 {
 
 ////////////////////////////////////////////////////////////////////////////////
-LWGEOM* transform( LWGEOM* lwgeom, int srid, bool clone )
+LWGEOM* transform( LWGEOM* lwgeom, int srid )
 {
     lwgeom = lwgeom_clone_deep( lwgeom );
     if( !lwgeom->srid )

@@ -1,5 +1,8 @@
 #pragma once
 
+// --- Standard Includes --- //
+#include <cstddef> // must be before extern C below
+
 // --- Lwgeom Includes --- //
 extern "C"
 {
@@ -21,7 +24,7 @@ struct valid_detail
 {
     bool valid;
     std::string reason;
-    LWGEOM location;
+    std::string location;
 };
 
 /// postgis/lwgeom_functions_basic.c
@@ -29,6 +32,7 @@ LWGEOMUTILS_EXPORTS
 LWGEOM* collectionextract( LWGEOM* lwgeom, int type );
 
 /// postgis/lwgeom_geos.c
+LWGEOMUTILS_EXPORTS
 valid_detail isvaliddetail( LWGEOM* lwgeom, int flags = 0 );
 
 ///

@@ -29,7 +29,7 @@ int main(
         //double dist = std::stod( argv[ 2 ] );
         gin = lwgeom_from_geojson( geojson.c_str(), &srs );
         gin->srid = 4326;
-        for( auto srid : srids )
+        for( int srid : srids )
         {
             gout = postgis::transform( gin, srid );
         }
