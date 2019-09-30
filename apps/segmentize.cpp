@@ -8,6 +8,7 @@ extern "C"
 // --- Standard Includes --- //
 #include <cfloat>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 
 ////////////////////////////////////////////////////////////////////////////////
