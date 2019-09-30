@@ -1,5 +1,8 @@
 #pragma once
 
+// --- Standard Includes --- //
+#include <cstddef> // must be before extern C below
+
 // --- Lwgeom Includes --- //
 extern "C"
 {
@@ -10,6 +13,7 @@ extern "C"
 #include <lwgeomutils_config.h>
 
 // --- Standard Includes --- //
+#include <stdexcept>
 #include <string>
 
 namespace postgis

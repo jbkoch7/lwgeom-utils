@@ -14,6 +14,7 @@ extern "C"
 #include <lwgeomutils_config.h>
 
 // --- Standard Includes --- //
+#include <stdexcept>
 #include <string>
 
 namespace postgis
