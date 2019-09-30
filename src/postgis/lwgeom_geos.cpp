@@ -12,8 +12,7 @@ valid_detail isvaliddetail( LWGEOM* lwgeom, int flags )
 {
     valid_detail values = { false };
 
-    auto lwpgnotice = []( const char* fmt, ... ){};
-    initGEOS( lwpgnotice, lwgeom_geos_error );
+    initGEOS( lwnotice, lwgeom_geos_error );
 
     GEOSGeometry const* g1 = LWGEOM2GEOS( lwgeom, 0 );
     if( g1 )

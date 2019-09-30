@@ -8,6 +8,7 @@ extern "C"
 {
 #include <liblwgeom.h>
 #include <lwgeom_geos.h>
+#include <lwgeom_log.h>
 }
 
 // --- Lwgeomutils Includes --- //
