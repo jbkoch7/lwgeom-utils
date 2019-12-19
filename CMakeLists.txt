@@ -66,7 +66,7 @@ find_package( SQLite3 3.0 REQUIRED )
 
 # JSON-C
 set( JSON_C_DIR CACHE PATH "Location of JSON-C installation" )
-find_package( JSONC 0.13 )
+find_package( JSONC 0.11 )
 
 # Configure files
 configure_file( ${PROJECT_SOURCE_DIR}/src/lwgeomutils_config.h.in
