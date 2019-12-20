@@ -61,8 +61,10 @@ set( PROJ_DIR CACHE PATH "Location of PROJ installation" )
 find_package( PROJ 4.9 REQUIRED )
 
 # SQLite3
-set( PROJ_DIR CACHE PATH "Location of SQLite3 installation" )
-find_package( SQLite3 3.0 REQUIRED )
+if( PROJ_VERSION VERSION_GREATER_EQUAL 6 )
+  set( PROJ_DIR CACHE PATH "Location of SQLite3 installation" )
+  find_package( SQLite3 3.0 REQUIRED )
+endif()
 
 # JSON-C
 set( JSON_C_DIR CACHE PATH "Location of JSON-C installation" )
